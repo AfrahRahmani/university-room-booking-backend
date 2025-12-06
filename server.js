@@ -18,7 +18,8 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5173', 
   'http://localhost:5174',
-  process.env.FRONTEND_URL
+  "https://university-room-booking-frontend-qv2ohxdtt.vercel.app",
+  process.env.FRONTEND_URL, 
   ].filter(Boolean);
 
 app.use(cors({
