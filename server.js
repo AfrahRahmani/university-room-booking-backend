@@ -18,7 +18,7 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5173', 
   'http://localhost:5174',
-  "https://university-room-booking-frontend-qv2ohxdtt.vercel.app",
+  'https://university-room-booking-frontend-ty.vercel.app',
   process.env.FRONTEND_URL, 
   ].filter(Boolean);
 
@@ -26,6 +26,12 @@ app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (mobile apps, Postman, curl, etc.)
     if (!origin) return callback(null, true);
+    
+    // Allow all Vercel preview URLs for your project
+    if (origin.includes('university-room-booking-frontend') && origin.includes('vercel.app')) {
+      console.log('✅ Allowed Vercel preview URL:', origin);
+      return callback(null, true);
+    }
     
     // Check if origin is in allowed list
     if (allowedOrigins.indexOf(origin) !== -1) {
@@ -38,7 +44,8 @@ app.use(cors({
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
-}));
+})
+);
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
