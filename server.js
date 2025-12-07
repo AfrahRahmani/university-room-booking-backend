@@ -32,7 +32,7 @@ app.use(cors({
       console.log('✅ Allowed Vercel preview URL:', origin);
       return callback(null, true);
     }
-    
+
     // Check if origin is in allowed list
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
@@ -67,9 +67,9 @@ const roomRoutes = require('./routes/RoomRoutes');
 const bookingRoutes = require('./routes/BookingRoutes');
 
 // 🛣️ Define main API routes
-app.use('/api/users', userRoutes);
-app.use('/api/rooms', roomRoutes);
-app.use('/api/bookings', bookingRoutes);
+app.use('/users', userRoutes);
+app.use('/rooms', roomRoutes);
+app.use('/bookings', bookingRoutes);
 
 // 🧩 Default route (for testing)
 app.get('/', (req, res) => {
